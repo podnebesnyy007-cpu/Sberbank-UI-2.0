@@ -1,0 +1,365 @@
+/**
+ * @name Sberbank UI — Source
+ * @version 1.0.0
+ * @description Базовый слой темы Sberbank UI: переменные, типографика, глобальные стили.
+ */
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap");
+
+/* ============================================================
+   ПЕРЕМЕННЫЕ SBERBANK UI
+   ============================================================ */
+:root {
+  /* Фирменные цвета Sberbank */
+  --sber-green: #21a038;
+  --sber-green-hover: #1b8a30;
+  --sber-green-dark: #157a28;
+  --sber-green-light: #4fd16a;
+  --sber-green-muted: rgba(33, 160, 56, 0.25);
+  --sber-green-dimmest: rgba(33, 160, 56, 0.12);
+
+  /* Фоны */
+  --sber-bg: #0b0f0c;
+  --sber-bg-secondary: #111712;
+  --sber-bg-tertiary: #161d17;
+  --sber-surface: rgba(22, 29, 23, 0.92);
+  --sber-surface-hover: rgba(33, 160, 56, 0.08);
+  --sber-border: rgba(33, 160, 56, 0.18);
+
+  /* Текст */
+  --sber-text: #e8f5ea;
+  --sber-text-secondary: #a8c4ac;
+  --sber-text-muted: #6e8a72;
+
+  /* Радиусы и тени */
+  --sber-radius-sm: 8px;
+  --sber-radius: 14px;
+  --sber-radius-lg: 20px;
+  --sber-radius-pill: 999px;
+
+  --sber-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.25);
+  --sber-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  --sber-shadow-lg: 0 20px 48px rgba(0, 0, 0, 0.5);
+  --sber-glow: 0 0 0 2px rgba(33, 160, 56, 0.35);
+
+  /* Акценты */
+  --sber-accent: var(--sber-green);
+  --sber-accent-hover: var(--sber-green-hover);
+
+  /* Шрифты */
+  --sber-font: 'Inter', 'gg sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --sber-font-mono: 'JetBrains Mono', Consolas, 'Liberation Mono', Menlo, monospace;
+
+  /* Анимации */
+  --sber-transition: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* ============================================================
+     МАППИНГ ПЕРЕМЕННЫХ DISCORD
+     ============================================================ */
+  --background-primary: var(--sber-bg);
+  --background-secondary: var(--sber-bg-secondary);
+  --background-secondary-alt: var(--sber-bg-tertiary);
+  --background-tertiary: var(--sber-bg-secondary);
+  --background-floating: var(--sber-surface);
+  --background-nested-floating: var(--sber-surface);
+  --background-mobile-primary: var(--sber-bg);
+  --background-mobile-secondary: var(--sber-bg-secondary);
+
+  --bg-overlay-1: var(--sber-bg);
+  --bg-overlay-2: var(--sber-bg-secondary);
+  --bg-overlay-3: var(--sber-bg-tertiary);
+  --bg-overlay-4: var(--sber-surface);
+  --bg-overlay-chat: var(--sber-bg);
+  --bg-overlay-floating: var(--sber-surface);
+
+  --background-modifier-hover: var(--sber-surface-hover);
+  --background-modifier-active: rgba(33, 160, 56, 0.12);
+  --background-modifier-selected: rgba(33, 160, 56, 0.16);
+  --background-modifier-accent: var(--sber-border);
+
+  --background-mentioned: rgba(33, 160, 56, 0.08);
+  --background-mentioned-hover: rgba(33, 160, 56, 0.14);
+  --background-message-hover: rgba(33, 160, 56, 0.05);
+  --background-message-highlight: rgba(33, 160, 56, 0.12);
+  --background-message-highlight-hover: rgba(33, 160, 56, 0.18);
+
+  --text-normal: var(--sber-text);
+  --text-primary: var(--sber-text);
+  --text-secondary: var(--sber-text-secondary);
+  --text-default: var(--sber-text);
+  --text-muted: var(--sber-text-muted);
+  --text-strong: #ffffff;
+  --text-link: var(--sber-green);
+  --text-brand: var(--sber-green);
+  --text-danger: #f04747;
+  --text-positive: var(--sber-green-light);
+
+  --header-primary: var(--sber-text);
+  --header-secondary: var(--sber-text-secondary);
+
+  --interactive-normal: var(--sber-text-secondary);
+  --interactive-hover: var(--sber-text);
+  --interactive-active: #ffffff;
+  --interactive-muted: var(--sber-text-muted);
+
+  --channels-default: var(--sber-text-secondary);
+  --channel-icon: var(--sber-text-secondary);
+  --channel-text-area-placeholder: var(--sber-text-muted);
+
+  --brand-experiment: var(--sber-green);
+  --brand-experiment-560: var(--sber-green-hover);
+  --brand-experiment-600: var(--sber-green-dark);
+  --brand-experiment-10a: var(--sber-green-muted);
+  --brand-experiment-05a: var(--sber-green-dimmest);
+
+  --button-secondary-background: var(--sber-surface);
+  --button-secondary-background-hover: var(--sber-surface-hover);
+  --button-secondary-background-active: rgba(33, 160, 56, 0.16);
+  --button-secondary-text: var(--sber-text);
+
+  --button-danger-background: #d64545;
+  --button-danger-background-hover: #b93a3a;
+  --button-positive-background: var(--sber-green);
+  --button-positive-background-hover: var(--sber-green-hover);
+
+  --channeltextarea-background: var(--sber-surface);
+  --chat-background: var(--sber-bg);
+  --chat-border: var(--sber-border);
+  --chat-input-container-background: var(--sber-surface);
+
+  --scrollbar-auto-thumb: var(--sber-green);
+  --scrollbar-auto-track: var(--sber-green-dimmest);
+  --scrollbar-thin-thumb: var(--sber-green);
+  --scrollbar-thin-track: transparent;
+
+  --focus-primary: var(--sber-green);
+  --info-positive-background: var(--sber-green-muted);
+  --info-positive-foreground: var(--sber-green);
+
+  --status-online: var(--sber-green);
+  --status-idle: #faa61a;
+  --status-dnd: #d64545;
+  --status-offline: #6e8a72;
+  --status-streaming: #7b5cd6;
+
+  --font-primary: var(--sber-font);
+  --font-display: var(--sber-font);
+  --font-headline: var(--sber-font);
+  --font-code: var(--sber-font-mono);
+
+  /* Наследие других тем */
+  --main-color: var(--sber-green);
+  --hover-color: var(--sber-green-hover);
+  --success-color: var(--sber-green);
+  --danger-color: #d64545;
+  --online-color: var(--sber-green);
+  --idle-color: #faa61a;
+  --dnd-color: #d64545;
+  --streaming-color: #7b5cd6;
+  --offline-color: #6e8a72;
+
+  --accent-hue: 128;
+  --accent-saturation: 66%;
+  --accent-lightness: 38%;
+  --accent-hsl: 128, 66%, 38%;
+  --accent-opacity: 1;
+  --accent-text-color: #ffffff;
+
+  --themeColor1: rgb(33, 160, 56);
+  --themeColor2: rgb(27, 138, 48);
+
+  --VBaccent: 128 66% 38%;
+  --VBaccent-muted: 128 66% 30%;
+  --VBaccent-dimmest: 128 66% 14%;
+  --text-shadow-size: 1px;
+
+  --app-bg: var(--sber-bg);
+  --app-blur: 8px;
+  --app-margin: 16px;
+  --app-radius: var(--sber-radius);
+  --sidebar-color: var(--sber-bg-secondary);
+  --main-content-color: var(--sber-bg);
+  --main-content-opacity: 1;
+  --sidebar-opacity: 1;
+  --main-rgb: 11, 15, 12;
+
+  --message-color: var(--sber-surface);
+  --message-color-hover: var(--sber-surface-hover);
+  --message-radius: var(--sber-radius);
+  --message-padding-top: 8px;
+  --message-padding-side: 12px;
+
+  --textarea-color: 255, 255, 255;
+  --textarea-alpha: 0.06;
+  --textarea-alpha-focus: 0.1;
+  --textarea-text-color: var(--sber-text);
+  --textarea-placeholder-color: var(--sber-text-muted);
+  --textarea-radius: var(--sber-radius-pill);
+
+  --card-color: var(--sber-surface);
+  --card-color-hover: var(--sber-surface-hover);
+  --card-color-select: rgba(33, 160, 56, 0.16);
+  --card-radius: var(--sber-radius);
+
+  --button-height: 34px;
+  --button-padding: 16px;
+  --button-radius: var(--sber-radius-pill);
+
+  --popout-color: var(--sber-surface);
+  --popout-blur: 12px;
+  --popout-radius: var(--sber-radius-lg);
+  --popout-shadow: var(--sber-shadow-lg);
+  --popout-shadow-border: inset 0 1px 1px rgba(255, 255, 255, 0.08),
+                          inset 0 -1px 2px rgba(0, 0, 0, 0.35),
+                          inset 0 0 0 1px var(--sber-border);
+
+  --tooltip-color: var(--sber-surface);
+  --tooltip-text-color: var(--sber-text);
+  --tooltip-radius: var(--sber-radius-sm);
+
+  --transition-time: var(--sber-transition);
+  --transition-type: cubic-bezier(0.4, 0, 0.2, 1);
+
+  --rs-small-spacing: 2px;
+  --rs-medium-spacing: 3px;
+  --rs-large-spacing: 4px;
+  --rs-small-width: 2px;
+  --rs-medium-width: 3px;
+  --rs-large-width: 4px;
+  --rs-avatar-shape: 50%;
+  --rs-online-color: var(--sber-green);
+  --rs-idle-color: #faa61a;
+  --rs-dnd-color: #d64545;
+  --rs-offline-color: #6e8a72;
+  --rs-streaming-color: #7b5cd6;
+  --rs-invisible-color: #6e8a72;
+  --rs-phone-visible: none;
+
+  --home-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2321a038'%3E%3Cpath d='M12 3L2 12h3v8h6v-6h2v6h6v-8h3L12 3z'/%3E%3C/svg%3E");
+  --home-size: contain;
+
+  --font: var(--sber-font);
+
+  --version: "Sberbank UI";
+  --sign-text: var(--version);
+  --sign-color: var(--sber-green);
+}
+
+/* ============================================================
+   СВЕТЛАЯ ТЕМА SBERBANK UI
+   ============================================================ */
+:is(.theme-light, .theme-dark .theme-light) {
+  --sber-bg: #f5f7f5;
+  --sber-bg-secondary: #ffffff;
+  --sber-bg-tertiary: #eef2ee;
+  --sber-surface: rgba(255, 255, 255, 0.92);
+  --sber-surface-hover: rgba(33, 160, 56, 0.08);
+  --sber-border: rgba(33, 160, 56, 0.22);
+  --sber-text: #0b0f0c;
+  --sber-text-secondary: #3d4d40;
+  --sber-text-muted: #6e8a72;
+
+  --background-primary: var(--sber-bg);
+  --background-secondary: var(--sber-bg-secondary);
+  --background-secondary-alt: var(--sber-bg-tertiary);
+  --background-tertiary: var(--sber-bg-secondary);
+  --background-floating: var(--sber-surface);
+  --text-normal: var(--sber-text);
+  --header-primary: var(--sber-text);
+  --header-secondary: var(--sber-text-secondary);
+  --interactive-normal: var(--sber-text-secondary);
+  --interactive-hover: var(--sber-text);
+  --interactive-active: #000000;
+  --channels-default: var(--sber-text-secondary);
+  --channel-icon: var(--sber-text-secondary);
+  --background-shading: rgba(252, 252, 252, 0.3);
+  --card-shading: rgba(252, 252, 252, 0.3);
+  --popout-shading: rgba(252, 252, 252, 0.7);
+  --modal-shading: rgba(252, 252, 252, 0.5);
+  --input-shading: rgba(0, 0, 0, 0.06);
+  --normal-text: #0b0f0c;
+  --muted-text: #6e8a72;
+}
+
+/* ============================================================
+   ТИПОГРАФИКА
+   ============================================================ */
+body,
+button,
+input,
+select,
+textarea {
+  font-family: var(--sber-font) !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code,
+pre,
+.hljs {
+  font-family: var(--sber-font-mono) !important;
+}
+
+::selection {
+  background: var(--sber-green-muted);
+  color: #ffffff;
+}
+
+/* ============================================================
+   СКРОЛЛБАРЫ
+   ============================================================ */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--sber-green);
+  border-radius: var(--sber-radius-pill);
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--sber-green-hover);
+  background-clip: content-box;
+}
+
+/* ============================================================
+   ФОН ПРИЛОЖЕНИЯ
+   ============================================================ */
+.appMount__51fd7,
+.app_a3002d,
+.bg__960e4,
+.app__160d8 {
+  background: var(--sber-bg) !important;
+}
+
+.appMount__51fd7 {
+  background-image:
+    radial-gradient(circle at 0% 0%, rgba(33, 160, 56, 0.08) 0%, transparent 45%),
+    radial-gradient(circle at 100% 100%, rgba(33, 160, 56, 0.06) 0%, transparent 45%) !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+}
+
+.layers__160d8 {
+  margin: var(--app-margin);
+  border-radius: var(--sber-radius-lg);
+  overflow: hidden;
+  box-shadow: var(--sber-shadow-lg);
+  border: 1px solid var(--sber-border);
+}
+
+/* ============================================================
+   УТИЛИТЫ
+   ============================================================ */
+.sber-accent { color: var(--sber-green) !important; }
+.sber-bg { background: var(--sber-bg) !important; }
+.sber-surface { background: var(--sber-surface) !important; }
+.sber-border { border-color: var(--sber-border) !important; }
+.sber-glow { box-shadow: var(--sber-glow) !important; }
+.sber-rounded { border-radius: var(--sber-radius) !important; }
+.sber-rounded-lg { border-radius: var(--sber-radius-lg) !important; }
