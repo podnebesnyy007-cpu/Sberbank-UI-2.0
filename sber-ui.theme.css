@@ -165,22 +165,19 @@ body::before { display: none !important; content: none !important; }
 
 [class*="channelTextArea_"] {
   background: var(--sb-surface) !important;
-  border: 1.5px solid var(--sb-border) !important;
+  border: none !important;
   border-radius: var(--sb-radius-lg) !important;
-  box-shadow: var(--sb-shadow-sm) !important;
-  transition: border-color var(--sb-dur) var(--sb-ease), box-shadow var(--sb-dur) var(--sb-ease);
+  box-shadow:
+    0 0 0 1.5px var(--sb-border),
+    var(--sb-shadow-sm) !important;
+  transition: box-shadow var(--sb-dur) var(--sb-ease);
+  overflow: hidden !important;
 }
 [class*="channelTextArea_"]:focus-within {
-  border-color: var(--sb-accent) !important;
-  box-shadow: 0 0 0 3px var(--sb-accent-soft) !important;
-}
-
-[class*="root_"][class*="modal"], [class*="menu_"], [class*="popout_"],
-[class*="messagesPopoutWrap_"], [class*="autocomplete_"] {
-  background: var(--sb-surface-2) !important;
-  border: 1px solid var(--sb-border-2) !important;
-  border-radius: var(--sb-radius-lg) !important;
-  box-shadow: var(--sb-shadow-lg) !important;
+  box-shadow:
+    0 0 0 1.5px var(--sb-accent),
+    0 0 0 4px var(--sb-accent-soft),
+    var(--sb-shadow-sm) !important;
 }
 
 /* ============================================================
