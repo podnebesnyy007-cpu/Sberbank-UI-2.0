@@ -1,0 +1,550 @@
+/**
+ * @name Sberbank UI
+ * @version 2.0.0
+ * @description Тема Sberbank UI: сплошные поверхности, анимации при наведении, кастомизация своего профиля.
+ * @author podnebesnyy007-cpu
+ * @source https://github.com/podnebesnyy007-cpu/Sberbank-UI-2.0
+ */
+
+/* ============================================================
+   1. НАСТРОЙКИ
+   ============================================================ */
+:root {
+  /* --- Палитра --- */
+  --sb-bg:          #0B0D10;
+  --sb-bg-2:        #14171C;
+  --sb-bg-3:        #1B1F26;
+  --sb-surface:     #1B1F26;
+  --sb-surface-2:   #232832;
+  --sb-border:      #232832;
+  --sb-border-2:    #2E3540;
+
+  --sb-text:        #ECEFF3;
+  --sb-text-2:      #B8BEC7;
+  --sb-text-muted:  #8B929C;
+
+  /* --- Акцент --- */
+  --sb-accent:        #21A038;
+  --sb-accent-hover:  #1B8A2F;
+  --sb-accent-active: #157026;
+  --sb-accent-soft:   rgba(33, 160, 56, 0.15);
+  --sb-accent-glow:   rgba(33, 160, 56, 0.45);
+
+  /* --- Радиусы --- */
+  --sb-radius-xs:   6px;
+  --sb-radius-sm:   10px;
+  --sb-radius-md:   14px;
+  --sb-radius-lg:   18px;
+  --sb-radius-pill: 999px;
+
+  /* --- Тени --- */
+  --sb-shadow-sm: 0 1px 2px rgba(0,0,0,0.25), 0 1px 3px rgba(0,0,0,0.18);
+  --sb-shadow-md: 0 4px 12px rgba(0,0,0,0.35), 0 2px 4px rgba(0,0,0,0.2);
+  --sb-shadow-lg: 0 12px 32px rgba(0,0,0,0.5), 0 4px 10px rgba(0,0,0,0.3);
+
+  /* --- Анимации --- */
+  --sb-ease:     cubic-bezier(0.22, 1, 0.36, 1);
+  --sb-ease-pop: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --sb-dur-fast: 140ms;
+  --sb-dur:      240ms;
+  --sb-dur-slow: 380ms;
+
+  /* ============================================================
+     2. КАСТОМИЗАЦИЯ СВОЕГО ПРОФИЛЯ (видно только тебе)
+     ============================================================ */
+
+  /* --- Цвет ника в чате и в списке участников --- */
+  --me-name-color: #4CC563;
+
+  /* --- Рамка вокруг твоего аватара --- */
+  --me-avatar-ring: #21A038;
+  --me-avatar-ring-width: 2px;
+  --me-avatar-glow: 0 0 0 4px rgba(33, 160, 56, 0.25),
+                    0 0 18px rgba(33, 160, 56, 0.35);
+
+  /* --- Градиент баннера профиля (для себя) --- */
+  --me-banner: linear-gradient(135deg, #21A038 0%, #157026 60%, #0B0D10 100%);
+
+  /* --- Свечение ника в чате --- */
+  --me-name-glow: 0 0 8px rgba(76, 197, 99, 0.5);
+
+  /* --- Свой бейдж (эмодзи перед ником) --- */
+  --me-badge: "🟢";           /* поставь пустую строку "" чтобы убрать */
+  --me-badge-margin: 4px;
+
+  /* --- Шрифт ника --- */
+  --me-name-font: 'Inter', 'gg sans', sans-serif;
+  --me-name-weight: 700;
+
+  /* ============================================================
+     3. МАППИНГ ПЕРЕМЕННЫХ DISCORD
+     ============================================================ */
+  --background-primary:             var(--sb-bg);
+  --background-secondary:           var(--sb-bg-2);
+  --background-secondary-alt:       var(--sb-bg-2);
+  --background-tertiary:            var(--sb-bg-3);
+  --background-floating:            var(--sb-surface-2);
+  --background-nested-floating:     var(--sb-surface-2);
+
+  --bg-overlay-1: var(--sb-bg);
+  --bg-overlay-2: var(--sb-bg-2);
+  --bg-overlay-3: var(--sb-bg-3);
+  --bg-overlay-4: var(--sb-surface-2);
+  --bg-overlay-chat: var(--sb-bg);
+  --bg-overlay-floating: var(--sb-surface-2);
+
+  --background-modifier-hover:    rgba(255, 255, 255, 0.06);
+  --background-modifier-active:   rgba(255, 255, 255, 0.09);
+  --background-modifier-selected: var(--sb-accent-soft);
+  --background-modifier-accent:   var(--sb-border);
+
+  --background-mentioned:       rgba(33, 160, 56, 0.08);
+  --background-mentioned-hover: rgba(33, 160, 56, 0.14);
+  --background-message-hover:   rgba(255, 255, 255, 0.03);
+
+  --text-normal:   var(--sb-text);
+  --text-muted:    var(--sb-text-muted);
+  --text-link:     var(--sb-accent);
+  --text-brand:    var(--sb-accent);
+  --text-strong:   #FFFFFF;
+  --text-danger:   #F04747;
+  --text-positive: #4CC563;
+
+  --header-primary:   var(--sb-text);
+  --header-secondary: var(--sb-text-2);
+
+  --interactive-normal: var(--sb-text-2);
+  --interactive-hover:  var(--sb-text);
+  --interactive-active: #FFFFFF;
+  --interactive-muted:  var(--sb-text-muted);
+
+  --channels-default: var(--sb-text-2);
+  --channel-icon:     var(--sb-text-2);
+  --channel-text-area-placeholder: var(--sb-text-muted);
+
+  --channeltextarea-background: var(--sb-surface);
+  --chat-background:            var(--sb-bg);
+  --chat-border:                var(--sb-border);
+
+  --brand-experiment:     var(--sb-accent);
+  --brand-experiment-560: var(--sb-accent-hover);
+  --brand-experiment-600: var(--sb-accent-active);
+  --brand-500:            var(--sb-accent);
+  --brand-560:            var(--sb-accent-hover);
+  --brand-600:            var(--sb-accent-active);
+
+  --button-secondary-background:       var(--sb-surface);
+  --button-secondary-background-hover: var(--sb-surface-2);
+  --button-secondary-text:             var(--sb-text);
+
+  --border-subtle: var(--sb-border);
+  --border-strong: var(--sb-border-2);
+
+  --scrollbar-auto-thumb: var(--sb-accent);
+  --scrollbar-auto-track: var(--sb-bg-2);
+  --scrollbar-thin-thumb: var(--sb-accent);
+  --scrollbar-thin-track: transparent;
+
+  --focus-primary: var(--sb-accent);
+  --info-positive-background: var(--sb-accent-soft);
+  --info-positive-foreground: var(--sb-accent);
+
+  --status-online:    var(--sb-accent);
+  --status-idle:      #FAA61A;
+  --status-dnd:       #F04747;
+  --status-offline:   #6B7280;
+  --status-streaming: #7B5CD6;
+
+  --font-primary:  'Inter', 'gg sans', sans-serif;
+  --font-display:  'Inter', 'gg sans', sans-serif;
+  --font-headline: 'Inter', 'gg sans', sans-serif;
+  --font-code:     'JetBrains Mono', Consolas, monospace;
+}
+
+/* ============================================================
+   4. ГЛОБАЛЬНЫЙ ФОН — СПЛОШНОЙ, БЕЗ ПРОЗРАЧНОСТИ
+   ============================================================ */
+html,
+body,
+#app-mount,
+[class*="appMount"],
+[class*="app_"],
+[class*="bg_"],
+[class*="layers"] {
+  background: var(--sb-bg) !important;
+  background-image: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* Убираем псевдоэлемент с картинкой */
+#app-mount::before,
+body::before {
+  display: none !important;
+  content: none !important;
+}
+
+/* ============================================================
+   5. ВЕРХНЯЯ ПАНЕЛЬ — СПЛОШНАЯ
+   ============================================================ */
+[class*="titleBar"],
+[class*="typeWindows"],
+[class*="withFrame"],
+[class*="bar_c38106"] {
+  background: var(--sb-bg-2) !important;
+  border-bottom: 1px solid var(--sb-accent) !important;
+  box-shadow: 0 1px 0 rgba(33, 160, 56, 0.35), var(--sb-shadow-sm) !important;
+}
+
+[class*="wordmark"] svg { display: none !important; }
+[class*="wordmark"]::after {
+  content: "Sberbank UI";
+  display: inline-block;
+  margin-left: 8px;
+  font-family: 'Inter', 'gg sans', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  color: var(--sb-accent);
+}
+
+[class*="winButton"] {
+  background: transparent !important;
+  transition: background var(--sb-dur) var(--sb-ease),
+              color var(--sb-dur) var(--sb-ease);
+}
+[class*="winButton"]:hover { background: rgba(255,255,255,0.08) !important; }
+[class*="winButtonClose"]:hover { background: #E01B24 !important; color: #fff !important; }
+
+/* ============================================================
+   6. ПЛОТНЫЕ СЛОИ ИНТЕРФЕЙСА
+   ============================================================ */
+[class*="guilds_"],
+[class*="sidebar_"],
+[class*="chat_"],
+[class*="panels_"],
+[class*="members_"] {
+  background: var(--sb-bg) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+[class*="sidebar_"] {
+  background: var(--sb-bg-2) !important;
+  border-right: 1px solid var(--sb-border) !important;
+}
+
+[class*="container_"][class*="header"] {
+  background: var(--sb-bg-2) !important;
+  border-bottom: 1px solid var(--sb-border) !important;
+  box-shadow: none !important;
+}
+
+[class*="members_"] {
+  background: var(--sb-bg-2) !important;
+  border-left: 1px solid var(--sb-border) !important;
+}
+
+[class*="panels_"] {
+  background: var(--sb-bg-2) !important;
+  border-top: 1px solid var(--sb-border) !important;
+}
+
+/* Сообщения — плотные, без прозрачности */
+[class*="message_"] {
+  background: transparent;
+  border-radius: var(--sb-radius-md);
+  transition: background var(--sb-dur) var(--sb-ease),
+              transform var(--sb-dur) var(--sb-ease);
+}
+[class*="message_"]:hover {
+  background: var(--sb-surface) !important;
+  transform: translateX(2px);
+}
+
+[class*="message_"][class*="mentioned_"] {
+  background: rgba(33, 160, 56, 0.10) !important;
+  border-left: 3px solid var(--sb-accent) !important;
+  border-radius: var(--sb-radius-sm) !important;
+}
+
+/* Поле ввода — плотное */
+[class*="channelTextArea_"] {
+  background: var(--sb-surface) !important;
+  border: 1.5px solid var(--sb-border) !important;
+  border-radius: var(--sb-radius-lg) !important;
+  box-shadow: var(--sb-shadow-sm) !important;
+  transition: border-color var(--sb-dur) var(--sb-ease),
+              box-shadow var(--sb-dur) var(--sb-ease);
+}
+[class*="channelTextArea_"]:focus-within {
+  border-color: var(--sb-accent) !important;
+  box-shadow: 0 0 0 3px var(--sb-accent-soft) !important;
+}
+
+/* Попапы, меню, модалки — плотные */
+[class*="root_"][class*="modal"],
+[class*="menu_"],
+[class*="popout_"],
+[class*="messagesPopoutWrap_"],
+[class*="autocomplete_"],
+[class*="container_"][class*="userPopout"] {
+  background: var(--sb-surface-2) !important;
+  border: 1px solid var(--sb-border-2) !important;
+  border-radius: var(--sb-radius-lg) !important;
+  box-shadow: var(--sb-shadow-lg) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* ============================================================
+   7. АКЦЕНТНЫЕ ЭЛЕМЕНТЫ
+   ============================================================ */
+[class*="childWrapper"],
+[class*="circleIconButton"] {
+  background: var(--sb-surface) !important;
+  color: var(--sb-text) !important;
+  border-radius: var(--sb-radius-md) !important;
+  transition: background var(--sb-dur) var(--sb-ease),
+              color var(--sb-dur) var(--sb-ease),
+              border-radius var(--sb-dur) var(--sb-ease),
+              transform var(--sb-dur) var(--sb-ease);
+}
+[class*="childWrapper"]:hover,
+[class*="circleIconButton"]:hover {
+  background: var(--sb-accent) !important;
+  color: #fff !important;
+  border-radius: var(--sb-radius-lg) !important;
+  transform: translateY(-1px) scale(1.04);
+}
+
+[class*="wrapper_"][class*="selected_"] [class*="childWrapper"] {
+  background: var(--sb-accent) !important;
+  color: #fff !important;
+  border-radius: var(--sb-radius-lg) !important;
+  box-shadow: 0 0 0 2px var(--sb-accent-soft);
+}
+
+[class*="numberBadge"],
+[class*="mention_"] {
+  background: var(--sb-accent) !important;
+  color: #fff !important;
+  border-radius: var(--sb-radius-pill) !important;
+  font-weight: 700;
+}
+
+[class*="link_"] {
+  border-radius: var(--sb-radius-sm);
+  transition: background var(--sb-dur) var(--sb-ease),
+              color var(--sb-dur) var(--sb-ease);
+}
+[class*="link_"]:hover { background: var(--background-modifier-hover) !important; }
+
+[class*="wrapper_"][class*="modeSelected_"] [class*="link_"] {
+  background: var(--sb-accent-soft) !important;
+}
+[class*="wrapper_"][class*="modeSelected_"] [class*="name_"],
+[class*="wrapper_"][class*="modeSelected_"] [class*="icon_"] {
+  color: var(--sb-accent) !important;
+  font-weight: 600;
+}
+
+[class*="button_"] {
+  border-radius: var(--sb-radius-pill) !important;
+  transition: transform var(--sb-dur) var(--sb-ease),
+              box-shadow var(--sb-dur) var(--sb-ease),
+              background var(--sb-dur) var(--sb-ease);
+}
+[class*="lookFilled_"][class*="colorBrand_"],
+[class*="lookFilled_"][class*="colorPrimary_"] {
+  background: var(--sb-accent) !important;
+  color: #fff !important;
+  border: none !important;
+}
+[class*="lookFilled_"][class*="colorBrand_"]:hover,
+[class*="lookFilled_"][class*="colorPrimary_"]:hover {
+  background: var(--sb-accent-hover) !important;
+  box-shadow: 0 0 0 3px var(--sb-accent-soft), var(--sb-shadow-md);
+  transform: translateY(-1px);
+}
+
+/* ============================================================
+   8. УЛУЧШЕННЫЕ АНИМАЦИИ ПРИ НАВЕДЕНИИ
+   ============================================================ */
+
+/* --- Аватар: плавный подъём + зелёное свечение --- */
+[class*="avatar_"] {
+  border-radius: 50%;
+  border: 2px solid transparent;
+  transition: transform var(--sb-dur) var(--sb-ease-pop),
+              border-color var(--sb-dur) var(--sb-ease),
+              box-shadow var(--sb-dur-slow) var(--sb-ease);
+  will-change: transform;
+}
+[class*="avatar_"]:hover {
+  transform: scale(1.18) translateY(-2px);
+  border-color: var(--sb-accent);
+  box-shadow: 0 0 0 4px var(--sb-accent-soft),
+              0 10px 24px rgba(0, 0, 0, 0.5),
+              0 0 20px var(--sb-accent-glow);
+  z-index: 3;
+}
+
+/* --- Сообщение: сдвиг + мягкая подсветка --- */
+[class*="message_"]:hover {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+}
+
+/* --- Ник в чате: сдвиг + свечение --- */
+[class*="username_"] {
+  color: var(--sb-accent) !important;
+  font-weight: 600;
+  transition: transform var(--sb-dur) var(--sb-ease),
+              filter var(--sb-dur) var(--sb-ease),
+              color var(--sb-dur) var(--sb-ease);
+}
+[class*="message_"]:hover [class*="username_"] {
+  transform: translateX(3px);
+  filter: drop-shadow(0 0 8px var(--sb-accent-soft));
+}
+
+/* --- Участник: каскадный сдвиг --- */
+[class*="member_"] {
+  border-radius: var(--sb-radius-sm);
+  transition: background var(--sb-dur) var(--sb-ease),
+              transform var(--sb-dur) var(--sb-ease-pop);
+}
+[class*="member_"]:hover {
+  background: var(--background-modifier-hover) !important;
+  transform: translateX(5px);
+}
+
+/* --- Попап профиля: всплытие + свечение --- */
+[class*="userPopout"],
+[class*="container_"][class*="userPopout"] {
+  transition: transform var(--sb-dur-slow) var(--sb-ease-pop),
+              box-shadow var(--sb-dur-slow) var(--sb-ease);
+  will-change: transform;
+}
+[class*="userPopout"]:hover,
+[class*="container_"][class*="userPopout"]:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 28px 64px rgba(0, 0, 0, 0.6),
+              0 0 0 1px rgba(33, 160, 56, 0.35),
+              0 0 40px rgba(33, 160, 56, 0.15) !important;
+}
+
+/* --- Баннер профиля: плавный зум --- */
+[class*="banner_"] {
+  transition: transform var(--sb-dur-slow) var(--sb-ease),
+              filter var(--sb-dur-slow) var(--sb-ease);
+}
+[class*="userPopout"]:hover [class*="banner_"],
+[class*="container_"][class*="userPopout"]:hover [class*="banner_"] {
+  transform: scale(1.05);
+  filter: brightness(1.1) saturate(1.1);
+}
+
+/* --- Ссылки: плавное подчёркивание --- */
+[class*="markup_"] a {
+  color: var(--sb-accent) !important;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--sb-dur) var(--sb-ease),
+              color var(--sb-dur) var(--sb-ease);
+}
+[class*="markup_"] a:hover {
+  border-bottom-color: var(--sb-accent);
+  color: var(--sb-accent-hover) !important;
+}
+
+/* --- Кнопки каналов/иконок в шапке: лёгкий подъём --- */
+[class*="toolbar_"] [class*="button_"],
+[class*="header"] [class*="button_"] {
+  transition: transform var(--sb-dur) var(--sb-ease-pop),
+              background var(--sb-dur) var(--sb-ease),
+              color var(--sb-dur) var(--sb-ease);
+}
+[class*="toolbar_"] [class*="button_"]:hover,
+[class*="header"] [class*="button_"]:hover {
+  transform: translateY(-1px) scale(1.06);
+}
+
+/* ============================================================
+   9. КАСТОМИЗАЦИЯ СВОЕГО ПРОФИЛЯ
+   ============================================================ */
+
+/* --- Твой ник в чате --- */
+[class*="message_"][class*="self"] [class*="username_"],
+[class*="message_"] [class*="username_"][style*="color"] {
+  /* общий случай не трогаем, ниже — точечно */
+}
+
+/* Твой ник в списке участников справа */
+[class*="member_"][class*="self"] [class*="name_"] {
+  color: var(--me-name-color) !important;
+  font-family: var(--me-name-font) !important;
+  font-weight: var(--me-name-weight) !important;
+  text-shadow: var(--me-name-glow);
+}
+
+/* Твой аватар в списке участников */
+[class*="member_"][class*="self"] [class*="avatar_"] {
+  border: var(--me-avatar-ring-width) solid var(--me-avatar-ring) !important;
+  box-shadow: var(--me-avatar-glow) !important;
+}
+
+/* Твой аватар в поле ввода (панель снизу) */
+[class*="panels_"] [class*="avatar_"],
+[class*="panels_"] [class*="avatarWrapper"] [class*="avatar_"] {
+  border: var(--me-avatar-ring-width) solid var(--me-avatar-ring) !important;
+  box-shadow: var(--me-avatar-glow) !important;
+}
+
+/* Твой аватар в попапе профиля */
+[class*="userPopout"] [class*="avatar_"],
+[class*="container_"][class*="userPopout"] [class*="avatar_"] {
+  border: var(--me-avatar-ring-width) solid var(--me-avatar-ring) !important;
+  box-shadow: var(--me-avatar-glow) !important;
+}
+
+/* Баннер профиля — твой собственный градиент */
+[class*="userPopout"] [class*="banner_"],
+[class*="container_"][class*="userPopout"] [class*="banner_"] {
+  background: var(--me-banner) !important;
+  background-size: cover !important;
+}
+
+/* Бейдж перед ником в чате */
+[class*="message_"][class*="self"] [class*="username_"]::before,
+[class*="member_"][class*="self"] [class*="name_"]::before {
+  content: var(--me-badge);
+  margin-right: var(--me-badge-margin);
+  font-size: 0.9em;
+}
+
+/* ============================================================
+   10. СКРОЛЛБАР
+   ============================================================ */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--sb-bg-2); }
+::-webkit-scrollbar-thumb {
+  background: var(--sb-accent);
+  border-radius: var(--sb-radius-pill);
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--sb-accent-hover);
+  background-clip: content-box;
+}
+
+/* ============================================================
+   11. УВАЖЕНИЕ К "УМЕНЬШИТЬ АНИМАЦИИ"
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
