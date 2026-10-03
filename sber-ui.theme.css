@@ -1,7 +1,8 @@
 /**
  * @name Sberbank UI
  * @version 2.3.0
- * @description Тема Sberbank UI: сплошные поверхности, стабильные анимации, кастомизация профиля.
+ * @description Тема Sberbank UI: сплошные поверхности,
+стабильные анимации, кастомизация профиля.
  * @author podnebesnyy007-cpu
  * @source https://github.com/podnebesnyy007-cpu/Sberbank-UI-2.0
  */
@@ -156,28 +157,25 @@ body::before { display: none !important; content: none !important; }
   border-radius: var(--sb-radius-md);
   transition: background var(--sb-dur) var(--sb-ease);
 }
-[class*="message_"]:hover { background: var(--sb-surface) !important; }
-[class*="message_"][class*="mentioned_"] {
-  background: rgba(33, 160, 56, 0.10) !important;
-  border-left: 3px solid var(--sb-accent) !important;
+/* Активный канал, в котором ты находишься */
+[class*="modeSelected"] [class*="link_"],
+[class*="modeSelected"][class*="link_"] {
+  background: rgba(33, 160, 56, 0.18) !important;
   border-radius: var(--sb-radius-sm) !important;
 }
 
-[class*="channelTextArea_"] {
-  background: var(--sb-surface) !important;
-  border: none !important;
-  border-radius: var(--sb-radius-lg) !important;
-  box-shadow:
-    0 0 0 1.5px var(--sb-border),
-    var(--sb-shadow-sm) !important;
-  transition: box-shadow var(--sb-dur) var(--sb-ease);
-  overflow: hidden !important;
+/* Иконка и имя активного канала — зелёные */
+[class*="modeSelected"] [class*="name_"],
+[class*="modeSelected"] [class*="icon_"] {
+  color: var(--sb-accent) !important;
+  font-weight: 600 !important;
 }
-[class*="channelTextArea_"]:focus-within {
-  box-shadow:
-    0 0 0 1.5px var(--sb-accent),
-    0 0 0 4px var(--sb-accent-soft),
-    var(--sb-shadow-sm) !important;
+
+/* Активное личное сообщение (в ЛС) — тоже зелёное */
+[class*="interactiveSelected"] {
+  background: rgba(33, 160, 56, 0.18) !important;
+  border-radius: var(--sb-radius-sm) !important;
+  color: var(--sb-accent) !important;
 }
 
 /* ============================================================
