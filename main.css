@@ -1,0 +1,460 @@
+/**
+ * @name Sberbank UI — Main
+ * @version 1.0.0
+ * @description Основной слой темы Sberbank UI: серверы, каналы, чат, сообщения.
+ */
+
+/* ============================================================
+   ЗАГОЛОВОК ОКНА
+   ============================================================ */
+.titleBar__421ed {
+  height: 28px;
+  background: var(--sber-bg-secondary) !important;
+}
+
+.wordmarkWindows__421ed {
+  color: var(--sber-green);
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+.wordmarkWindows__421ed::after {
+  content: "Sberbank UI";
+  display: block;
+  font-family: var(--sber-font);
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--sber-green);
+}
+
+.wordmarkWindows__421ed svg {
+  display: none;
+}
+
+/* ============================================================
+   СПИСОК СЕРВЕРОВ
+   ============================================================ */
+.wrapper_ef3116 {
+  background: var(--sber-bg-secondary) !important;
+  border-right: 1px solid var(--sber-border);
+}
+
+.scroller_ef3116 {
+  background: transparent !important;
+  padding-top: 12px;
+}
+
+.childWrapper__6e9f8,
+.circleIconButton__5bc7e {
+  background: var(--sber-green) !important;
+  color: #ffffff !important;
+  border-radius: var(--sber-radius-sm) !important;
+  transition: var(--sber-transition);
+}
+
+.childWrapper__6e9f8:hover,
+.circleIconButton__5bc7e:hover {
+  background: var(--sber-green-hover) !important;
+  transform: translateY(-1px);
+}
+
+.wrapper__6e9f8.selected__6e9f8 .childWrapper__6e9f8 {
+  background: var(--sber-green) !important;
+  box-shadow: var(--sber-glow);
+}
+
+.mention__3b95d,
+.numberBadge__463b7 {
+  background: var(--sber-green) !important;
+  color: #ffffff !important;
+  border-radius: var(--sber-radius-pill);
+  font-weight: 700;
+}
+
+.item__58105 {
+  background: var(--sber-green) !important;
+  box-shadow: 0 0 6px var(--sber-green);
+}
+
+/* ============================================================
+   БОКОВАЯ ПАНЕЛЬ КАНАЛОВ
+   ============================================================ */
+.sidebar__5e434,
+.sidebar_c48ade {
+  background: var(--sber-bg-secondary) !important;
+  border-right: 1px solid var(--sber-border);
+}
+
+.container__2637a,
+.privateChannels_e6b769,
+.scroller__99e7c {
+  background: transparent !important;
+}
+
+.header_f37cb1,
+.searchBar_e6b769 {
+  background: transparent !important;
+  box-shadow: 0 1px 0 var(--sber-border);
+}
+
+.name__2ea32,
+.icon__2ea32 {
+  color: var(--sber-text-secondary) !important;
+  transition: var(--sber-transition);
+}
+
+.wrapper__2ea32:hover .name__2ea32,
+.wrapper__2ea32:hover .icon__2ea32 {
+  color: var(--sber-text) !important;
+}
+
+.wrapper__2ea32.modeSelected__2ea32 .link__2ea32 {
+  background: var(--sber-green-muted) !important;
+  border-radius: var(--sber-radius-sm);
+}
+
+.wrapper__2ea32.modeSelected__2ea32 .name__2ea32,
+.wrapper__2ea32.modeSelected__2ea32 .icon__2ea32 {
+  color: var(--sber-green) !important;
+  font-weight: 600;
+}
+
+.wrapper__2ea32.modeUnreadImportant__2ea32 .name__2ea32 {
+  color: var(--sber-green) !important;
+  text-shadow: 0 0 6px var(--sber-green-muted);
+}
+
+.link__2ea32 {
+  border-radius: var(--sber-radius-sm);
+  transition: var(--sber-transition);
+}
+
+.membersGroup_c8ffbb,
+.containerDefault__29444 .overflow__82b15 {
+  color: var(--sber-green) !important;
+  background: var(--sber-green-dimmest);
+  border-radius: var(--sber-radius-sm);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ============================================================
+   ОБЛАСТЬ ЧАТА
+   ============================================================ */
+.chat_f75fb0,
+.noChannel__01d5c {
+  background: var(--sber-bg) !important;
+}
+
+.chatContent_f75fb0,
+.scroller__36d07 {
+  background: transparent !important;
+}
+
+.container__9293f {
+  background: var(--sber-bg-secondary) !important;
+  border-bottom: 1px solid var(--sber-border);
+  box-shadow: none;
+}
+
+.container__9293f .title__9293f,
+.container__9293f .topic__6ec1a {
+  color: var(--sber-text) !important;
+}
+
+/* ============================================================
+   СООБЩЕНИЯ
+   ============================================================ */
+.wrapper_c19a55 {
+  background: var(--sber-surface) !important;
+  border-radius: var(--sber-radius) !important;
+  border: 1px solid transparent;
+  margin: 2px 16px 2px 68px;
+  padding: 8px 12px !important;
+  transition: var(--sber-transition);
+}
+
+.wrapper_c19a55:hover {
+  background: var(--sber-surface-hover) !important;
+  border-color: var(--sber-border);
+}
+
+.wrapper_c19a55.mentioned__5126c {
+  background: var(--sber-green-dimmest) !important;
+  border-color: var(--sber-green);
+  box-shadow: 0 0 0 1px var(--sber-green-muted);
+}
+
+.wrapper_c19a55.mentioned__5126c::before {
+  background: var(--sber-green);
+}
+
+.wrapper_c19a55.replying__5126c {
+  border-color: var(--sber-green-hover);
+}
+
+.avatar_c19a55 {
+  border-radius: 50%;
+  border: 2px solid var(--sber-border);
+}
+
+.messageContent_c19a55 {
+  color: var(--sber-text) !important;
+}
+
+.username_c19a55,
+.headerText_c19a55 .username_c19a55 {
+  color: var(--sber-green) !important;
+  font-weight: 600;
+}
+
+.timestamp_c19a55 {
+  color: var(--sber-text-muted) !important;
+}
+
+.repliedMessage_c19a55::before {
+  border-color: var(--sber-green) !important;
+}
+
+.repliedMessageClickableSpine_c19a55 {
+  border-color: var(--sber-green) !important;
+}
+
+/* ============================================================
+   ПОЛЕ ВВОДА
+   ============================================================ */
+.channelTextArea__74017,
+.channelTextArea_f75fb0 {
+  background: var(--sber-surface) !important;
+  border-radius: var(--sber-radius-pill) !important;
+  border: 1px solid var(--sber-border) !important;
+  box-shadow: var(--sber-shadow-sm) !important;
+  transition: var(--sber-transition);
+}
+
+.channelTextArea__74017:focus-within {
+  border-color: var(--sber-green) !important;
+  box-shadow: var(--sber-glow), var(--sber-shadow-sm) !important;
+}
+
+.scrollableContainer__74017 {
+  background: transparent !important;
+}
+
+.placeholder__1b31f {
+  color: var(--sber-text-muted) !important;
+}
+
+.editor__1b31f {
+  color: var(--sber-text) !important;
+}
+
+.buttons__74017 .button__201d5 {
+  border-radius: var(--sber-radius-sm);
+  transition: var(--sber-transition);
+}
+
+.buttons__74017 .button__201d5:hover {
+  background: var(--sber-green-muted) !important;
+  color: var(--sber-green) !important;
+}
+
+/* ============================================================
+   КНОПКИ
+   ============================================================ */
+.button__201d5 {
+  border-radius: var(--sber-radius-pill) !important;
+  transition: var(--sber-transition);
+  font-weight: 500;
+}
+
+.lookFilled__201d5.colorBrand__201d5,
+.lookFilled__201d5.colorPrimary__201d5 {
+  background: var(--sber-green) !important;
+  color: #ffffff !important;
+  border: none !important;
+}
+
+.lookFilled__201d5.colorBrand__201d5:hover,
+.lookFilled__201d5.colorPrimary__201d5:hover {
+  background: var(--sber-green-hover) !important;
+  box-shadow: var(--sber-glow);
+}
+
+.lookOutlined__201d5.colorBrand__201d5 {
+  border-color: var(--sber-green) !important;
+  color: var(--sber-green) !important;
+  background: transparent !important;
+}
+
+.lookOutlined__201d5.colorBrand__201d5:hover {
+  background: var(--sber-green-muted) !important;
+}
+
+.lookLink__201d5 {
+  color: var(--sber-green) !important;
+}
+
+.button_a22cb0.primary_a22cb0 {
+  background: var(--sber-green) !important;
+  border-color: var(--sber-green) !important;
+}
+
+.button_a22cb0.primary_a22cb0:hover {
+  background: var(--sber-green-hover) !important;
+  border-color: var(--sber-green-hover) !important;
+}
+
+.button_a22cb0.secondary_a22cb0 {
+  background: transparent !important;
+  border-color: var(--sber-green) !important;
+  color: var(--sber-green) !important;
+}
+
+.button_a22cb0.secondary_a22cb0:hover {
+  background: var(--sber-green-muted) !important;
+}
+
+/* ============================================================
+   УЧАСТНИКИ
+   ============================================================ */
+.members_c8ffbb {
+  background: var(--sber-bg-secondary) !important;
+  border-left: 1px solid var(--sber-border);
+}
+
+.member__5d473 {
+  border-radius: var(--sber-radius-sm);
+  transition: var(--sber-transition);
+}
+
+.member__5d473:hover {
+  background: var(--sber-surface-hover) !important;
+}
+
+.member__5d473 .name__703b9 {
+  color: var(--sber-text) !important;
+}
+
+.layout__91a9d {
+  border-radius: var(--sber-radius-sm);
+}
+
+/* ============================================================
+   ПАНЕЛЬ ПРОФИЛЯ
+   ============================================================ */
+.panels__5e434,
+.panels_c48ade {
+  background: var(--sber-bg-secondary) !important;
+  border-top: 1px solid var(--sber-border);
+}
+
+.container__37e49,
+.container_e131a9 {
+  background: transparent !important;
+}
+
+.container__37e49 .nameTag__37e49,
+.container__37e49 .nameTag__37e49 * {
+  color: var(--sber-text) !important;
+}
+
+.container__37e49 .subtext__37e49 {
+  color: var(--sber-text-muted) !important;
+}
+
+/* ============================================================
+   ВЛОЖЕНИЯ, ЭМБЕДЫ, КОД
+   ============================================================ */
+.embedFull__623de,
+.embedCard__44c9a,
+.fileWrapper__0ccae,
+.wrapperAudio_cf09d8,
+.wrapper_d5f3cd {
+  background: var(--sber-surface) !important;
+  border-radius: var(--sber-radius) !important;
+  border: 1px solid var(--sber-border) !important;
+  border-left: 4px solid var(--sber-green) !important;
+}
+
+.markup__75297 code {
+  background: rgba(33, 160, 56, 0.1) !important;
+  color: var(--sber-green-light) !important;
+  border-radius: var(--sber-radius-sm);
+  border: 1px solid var(--sber-border);
+}
+
+.markup__75297 pre {
+  background: var(--sber-bg-secondary) !important;
+  border-radius: var(--sber-radius) !important;
+  border: 1px solid var(--sber-border) !important;
+}
+
+.hljs {
+  background: var(--sber-bg-secondary) !important;
+}
+
+.blockquoteContainer__75297 .blockquoteDivider__75297 {
+  background: var(--sber-green) !important;
+  border-radius: var(--sber-radius-pill);
+}
+
+/* ============================================================
+   РЕАКЦИИ
+   ============================================================ */
+.reaction__23977 {
+  background: var(--sber-surface) !important;
+  border-radius: var(--sber-radius-pill) !important;
+  border: 1px solid transparent;
+  transition: var(--sber-transition);
+}
+
+.reaction__23977:hover {
+  border-color: var(--sber-green) !important;
+}
+
+.reaction__23977.reactionMe__23977 {
+  background: var(--sber-green-muted) !important;
+  border-color: var(--sber-green) !important;
+}
+
+.reaction__23977.reactionMe__23977 .reactionCount__23977 {
+  color: var(--sber-green) !important;
+}
+
+/* ============================================================
+   РАЗДЕЛИТЕЛИ, БЭЙДЖИ, УПОМИНАНИЯ
+   ============================================================ */
+.divider__908e2 {
+  border-color: var(--sber-green) !important;
+}
+
+.divider__908e2 .content__908e2 {
+  background: var(--sber-surface) !important;
+  color: var(--sber-green) !important;
+  border-radius: var(--sber-radius-pill);
+}
+
+.isUnread__908e2 .unreadPill__908e2 {
+  background: var(--sber-green) !important;
+  color: #ffffff !important;
+}
+
+.wrapper_f61d60 {
+  background: var(--sber-green-muted) !important;
+  color: var(--sber-green) !important;
+  border-radius: var(--sber-radius-sm);
+  padding: 0 4px;
+}
+
+.wrapper_f61d60:hover {
+  background: var(--sber-green) !important;
+  color: #ffffff !important;
+}
+
+.botTag__82f07.botTagRegular__82f07 {
+  background: var(--sber-green) !important;
+  color: #ffffff !important;
+  border-radius: var(--sber-radius-sm) !important;
+}
