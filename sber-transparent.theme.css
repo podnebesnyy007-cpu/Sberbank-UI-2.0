@@ -1,7 +1,7 @@
 /**
  * @name Sber Transparent
- * @version 1.0.0
- * @description Прозрачный интерфейс + анимации при наведении на профиль.
+ * @version 1.1.0
+ * @description Прозрачный интерфейс + анимации при наведении + интро "Sberbank UI".
  * @author podnebesnyy007-cpu
  * @source https://github.com/podnebesnyy007-cpu/Sberbank-UI-2.0
  */
@@ -10,7 +10,7 @@
    1. НАСТРОЙКИ (можно менять)
    ============================================================ */
 :root {
-  /* Фон приложения (картинка под стеклом) */
+  /* Фон приложения */
   --bg-image: url("https://images.unsplash.com/photo-1502134249126-9f3755a50d78?w=1920&q=80");
   --bg-blur: 24px;
 
@@ -23,6 +23,7 @@
   --accent: #21A038;
   --accent-hover: #1B8A2F;
   --accent-soft: rgba(33, 160, 56, 0.15);
+  --accent-glow: rgba(33, 160, 56, 0.45);
 
   /* Радиусы */
   --radius-sm: 8px;
@@ -75,7 +76,6 @@ body,
   background: transparent !important;
 }
 
-body::before,
 #app-mount::before {
   content: "";
   position: fixed;
@@ -84,10 +84,64 @@ body::before,
   background: var(--bg-image) center/cover no-repeat fixed;
   filter: blur(var(--bg-blur)) brightness(0.6);
   transform: scale(1.1);
+  pointer-events: none;
 }
 
 /* ============================================================
-   3. ПРОЗРАЧНЫЕ СЛОИ ИНТЕРФЕЙСА
+   3. ВЕРХНЯЯ ПАНЕЛЬ — НЕПРОЗРАЧНАЯ
+   ============================================================ */
+[class^="titleBar_"],
+[class*=" typeWindows"],
+[class^="typeWindows_"],
+.bar_c38106 {
+  background: #0B0D10 !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border-bottom: 1px solid rgba(33, 160, 56, 0.35) !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Логотип-точка слева (заменяет дефолтное "Discord") */
+[class^="wordmark_"],
+[class^="wordmarkWindows_"] {
+  color: var(--accent) !important;
+}
+
+[class^="wordmark_"] svg,
+[class^="wordmarkWindows_"] svg {
+  display: none !important;
+}
+
+[class^="wordmark_"]::after,
+[class^="wordmarkWindows_"]::after {
+  content: "Sberbank UI";
+  display: inline-block;
+  margin-left: 6px;
+  font-family: 'Inter', 'gg sans', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.4px;
+  color: var(--accent);
+}
+
+/* Кнопки управления окном — плоские, тёмные */
+[class^="winButton_"] {
+  background: transparent !important;
+  transition: background var(--dur) var(--ease),
+              color var(--dur) var(--ease);
+}
+
+[class^="winButton_"]:hover {
+  background: rgba(255, 255, 255, 0.08) !important;
+}
+
+[class^="winButtonClose_"]:hover {
+  background: #E01B24 !important;
+  color: #fff !important;
+}
+
+/* ============================================================
+   4. ПРОЗРАЧНЫЕ СЛОИ ИНТЕРФЕЙСА
    ============================================================ */
 [class^="guilds_"],
 [class^="sidebar_"],
@@ -108,18 +162,18 @@ body::before,
   box-shadow: none !important;
 }
 
-/* Сообщения — полупрозрачные */
 [class^="message_"] {
   background: transparent;
   border-radius: var(--radius-sm);
-  transition: background var(--dur) var(--ease);
+  transition: background var(--dur) var(--ease),
+              transform var(--dur) var(--ease);
 }
 
 [class^="message_"]:hover {
   background: rgba(255, 255, 255, 0.04) !important;
+  transform: translateX(2px);
 }
 
-/* Поле ввода — стеклянное */
 [class^="channelTextArea_"] {
   background: rgba(20, 23, 28, 0.55) !important;
   backdrop-filter: blur(14px);
@@ -135,7 +189,7 @@ body::before,
   box-shadow: 0 0 0 3px var(--accent-soft) !important;
 }
 
-/* Попапы, меню, модалки — стекло */
+/* Попапы, меню, модалки */
 [class^="root_"][class*="modal"],
 [class^="menu_"],
 [class^="popout_"],
@@ -151,7 +205,7 @@ body::before,
 }
 
 /* ============================================================
-   4. АКЦЕНТНЫЕ ЭЛЕМЕНТЫ
+   5. АКЦЕНТНЫЕ ЭЛЕМЕНТЫ
    ============================================================ */
 [class^="childWrapper_"],
 [class^="circleIconButton_"] {
@@ -172,7 +226,7 @@ body::before,
   background: var(--accent) !important;
   color: #fff !important;
   border-radius: var(--radius) !important;
-  box-shadow: 0 0 0 2px rgba(33, 160, 56, 0.35);
+  box-shadow: 0 0 0 2px var(--accent-glow);
 }
 
 [class^="numberBadge_"],
@@ -221,17 +275,14 @@ body::before,
 }
 
 /* ============================================================
-   5. АНИМАЦИИ ПРИ НАВЕДЕНИИ НА ПРОФИЛЬ / АВАТАР
+   6. АНИМАЦИИ ПРИ НАВЕДЕНИИ
    ============================================================ */
-
-/* --- Аватар: плавный подъём, зелёное свечение и увеличение --- */
 [class^="avatar_"] {
   border-radius: 50%;
   border: 2px solid transparent;
-  transition:
-    transform var(--dur) var(--ease),
-    border-color var(--dur) var(--ease),
-    box-shadow var(--dur) var(--ease);
+  transition: transform var(--dur) var(--ease),
+              border-color var(--dur) var(--ease),
+              box-shadow var(--dur) var(--ease);
 }
 
 [class^="avatar_"]:hover {
@@ -242,18 +293,6 @@ body::before,
   z-index: 2;
 }
 
-/* --- Сообщение: подсветка и лёгкий сдвиг при наведении --- */
-[class^="message_"] {
-  transition:
-    background var(--dur) var(--ease),
-    transform var(--dur) var(--ease);
-}
-
-[class^="message_"]:hover {
-  transform: translateX(2px);
-}
-
-/* --- Имя пользователя: плавный сдвиг и зелёный акцент --- */
 [class^="username_"] {
   color: var(--accent) !important;
   font-weight: 600;
@@ -266,12 +305,10 @@ body::before,
   filter: drop-shadow(0 0 6px var(--accent-soft));
 }
 
-/* --- Участник в списке: сдвиг вправо и подсветка --- */
 [class^="member_"] {
   border-radius: var(--radius-sm);
-  transition:
-    background var(--dur) var(--ease),
-    transform var(--dur) var(--ease);
+  transition: background var(--dur) var(--ease),
+              transform var(--dur) var(--ease);
 }
 
 [class^="member_"]:hover {
@@ -279,32 +316,21 @@ body::before,
   transform: translateX(4px);
 }
 
-/* --- Попап профиля (user popout): появление с масштабом и свечением --- */
 [class^="userPopout"],
 [class^="container_"][class*="userPopout"] {
-  transition:
-    transform var(--dur) var(--ease),
-    box-shadow var(--dur) var(--ease);
+  transition: transform var(--dur) var(--ease),
+              box-shadow var(--dur) var(--ease);
 }
 
 [class^="userPopout"]:hover,
 [class^="container_"][class*="userPopout"]:hover {
   transform: translateY(-2px);
-  box-shadow:
-    0 24px 56px rgba(0, 0, 0, 0.55),
-    0 0 0 1px rgba(33, 160, 56, 0.25) !important;
+  box-shadow: 0 24px 56px rgba(0, 0, 0, 0.55),
+              0 0 0 1px rgba(33, 160, 56, 0.25) !important;
 }
 
-/* --- Аватар внутри попапа профиля: увеличение + свечение --- */
-[class^="userPopout"] [class^="avatar_"]:hover,
-[class^="container_"][class*="userPopout"] [class^="avatar_"]:hover {
-  transform: scale(1.1);
-  box-shadow: 0 0 0 4px var(--accent-soft);
-}
-
-/* --- Баннер профиля: лёгкий зум при наведении --- */
 [class^="banner_"] {
-  transition: transform var(--dur-slow, 400ms) var(--ease),
+  transition: transform 400ms var(--ease),
               filter var(--dur) var(--ease);
 }
 
@@ -314,7 +340,6 @@ body::before,
   filter: brightness(1.08);
 }
 
-/* --- Ссылки в чате: плавное подчёркивание --- */
 [class^="markup_"] a {
   color: var(--accent) !important;
   text-decoration: none;
@@ -327,7 +352,70 @@ body::before,
 }
 
 /* ============================================================
-   6. СКРОЛЛБАР
+   7. ИНТРО ПРИ ЗАПУСКЕ ТЕМЫ — "Sberbank UI"
+   ============================================================ */
+#app-mount::after {
+  content: "Sberbank UI";
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-family: 'Inter', 'gg sans', sans-serif;
+  font-weight: 800;
+  font-size: clamp(28px, 5vw, 56px);
+  letter-spacing: 0.08em;
+  text-transform: none;
+
+  color: #FFFFFF;
+  background: radial-gradient(circle at 50% 50%,
+              rgba(33, 160, 56, 0.18) 0%,
+              rgba(11, 13, 16, 0.98) 60%,
+              #000 100%);
+
+  text-shadow:
+    0 0 12px var(--accent-glow),
+    0 0 32px var(--accent-glow),
+    0 0 64px rgba(33, 160, 56, 0.25);
+
+  animation: sber-intro 2600ms var(--ease) forwards;
+  pointer-events: none;
+}
+
+/* Пульсирующая точка перед текстом */
+#app-mount::after {
+  /* вставляем точку через box-shadow-приём невозможно,
+     поэтому добавляем её как отдельный псевдо-элемент ниже */
+}
+
+@keyframes sber-intro {
+  0% {
+    opacity: 0;
+    transform: scale(1.15);
+    filter: blur(14px);
+  }
+  15% {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0);
+  }
+  70% {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.05);
+    filter: blur(10px);
+    visibility: hidden;
+  }
+}
+
+/* ============================================================
+   8. СКРОЛЛБАР
    ============================================================ */
 ::-webkit-scrollbar { width: 8px; height: 8px; }
 ::-webkit-scrollbar-track { background: transparent; }
@@ -343,21 +431,14 @@ body::before,
 }
 
 /* ============================================================
-   7. АНИМАЦИИ ПРИ ВКЛЮЧЕНИИ (плавное появление)
+   9. УВАЖЕНИЕ К "УМЕНЬШИТЬ АНИМАЦИИ"
    ============================================================ */
-@keyframes sb-fade-in {
-  from { opacity: 0; transform: translateY(6px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-[class^="message_"] {
-  animation: sb-fade-in 250ms var(--ease);
-}
-
-/* Уважение к настройке "уменьшить анимации" */
 @media (prefers-reduced-motion: reduce) {
   * {
     animation: none !important;
     transition: none !important;
+  }
+  #app-mount::after {
+    display: none !important;
   }
 }
